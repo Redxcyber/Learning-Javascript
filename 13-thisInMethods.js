@@ -9,11 +9,13 @@ let user = {
     name : "Pranav",
     age : 30,
     sayHi() {
+        //console.log( "Hi, I am " + name ); // Error: name is not defined : (can't access outer property directly)
         console.log( "Hi, I am " + this.name );
     }
 };
 
 user.sayHi();
+console.log("\n");
 
 /*
     user.sayHi() → the object before the dot is user
@@ -55,14 +57,12 @@ let admin2 = admin1;
 admin1 = null;
 
 //admin2.sayHi(); // TypeError: Cannot read properties of null
+console.log();
 
 /*
-    If we used this.name instead of admin1.name inside the console.log(),
-    then the code would work.
+If we used this.name instead of admin1.name inside the console.log(),
+then the code would work.
 */
-
-
-
 
 
 
@@ -87,25 +87,26 @@ let user2 = {
 
 user1.greet(); 
 user2.greet();
+console.log();
 
 /*
     In user1.greet(), the object before the dot is user1, so this.name = "Pranav"
     In user2.greet(), the object before the dot is user2, so this.name = "Ayush"
 
     📌 Key Rule:
-        When you call object.function(), the object before the dot decides what this is.
+        When you call object.function(), the object before the dot decides what 'this' is.
 
     💡 Line by Line:
         ✅ user1.greet();
             The object before the dot is user1
             So 'this' is user1
-            this.name becomes user1.name → "Bob"
+            this.name becomes user1.name → "Pranav"
             Output: "Hi, I'm Pranav"
 
         ✅ user2.greet();
             Now the object before the dot is user2
             So 'this' is user2
-            this.name becomes user2.name → "Charlie"
+            this.name becomes user2.name → "Ayush"
             Output: "Hi, I'm Ayush"
     
     🔁 Even though both are using the same function, the "this" value changes depending on who is calling it.
@@ -137,6 +138,7 @@ let person = {
 
 person.speak(); // David
 sayName();      // undefined (or window.name if not in strict mode)
+console.log("\n");
 
 
 
@@ -173,7 +175,7 @@ teacher.sayHi();   // Here "this" -> teacher or this.name = teacher.name
 
 
 /* 
-    💡 Key Comment Recap:
+    💡 Key Concept Recap:
         "this" in JavaScript is dynamic — 
         it depends on the object calling the function,
         not where the function was created.
@@ -201,7 +203,6 @@ teacher.sayHi();   // Here "this" -> teacher or this.name = teacher.name
 */
 
 let employee = {
-
     firstName: "Ilya",
     sayHi() {
       let arrow = () => console.log(this.firstName);
@@ -216,7 +217,7 @@ employee.sayHi(); //Ilya
 /*
     🔍 What’s happening here:
         1. sayHi() is a normal function inside the employee object.
-            - So this inside sayHi is employee.
+            - So 'this' inside sayHi is employee.
         2. Inside sayHi(), we create an arrow function called arrow.
         3. Arrow functions don’t have their own this, so they use this from sayHi(), which is employee.
         4. So when we call arrow(), it shows this.firstName → employee.firstName → "Ilya".
