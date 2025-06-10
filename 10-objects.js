@@ -381,6 +381,152 @@ console.log("\n");
 
 
 
+//-------------> Built-in Object Methods
+
+
+// 1. Object.keys(obj) : Returns an array of keys.
+user = {
+    name : "pranav",
+    age : 37,
+    isAdmin : false
+};
+console.log(Object.keys(user));
+
+
+
+// 2. Object.values(obj) : Returns an array of values.
+user = {
+    name : "pranav",
+    age : 37,
+    isAdmin : false
+};
+console.log(Object.values(user));
+
+
+
+
+// 3. Object.entries(obj) : Returns an array of [key, value] pairs.
+user = {
+    name : "pranav",
+    age : 37,
+    isAdmin : false
+};
+console.log(Object.entries(user));
+
+
+
+
+
+// 4. Object.assign(target, sources...) : Copies properties from sources to target.
+let obj1 = { name : "Pranav" };
+let obj2 = { age : 50 };
+let merged = Object.assign( {}, obj1, obj2 );
+console.log(merged);
+console.log("\n");
+
+
+
+
+
+// 5. Object.hasOwn(obj, key) (modern version of hasOwnProperty) : Checks if the key exists in the object.
+obj = { name : "pranav" };
+console.log(obj);
+
+console.log(Object.hasOwn(obj, "name"));
+
+
+
+
+
+
+// 6. Object.freeze(obj) : Makes an object immutable – you cannot add, remove, or change any properties.
+
+let object1 = {
+    name : "Pranav",
+    age : 45,
+    address : "UP" 
+};
+console.log(object1);
+
+Object.freeze(object1);
+
+object1.name = "Bob";     // ❌ Won't modify
+object1.city = "Delhi";   // ❌ Won’t be added
+delete object1.age;       // ❌ Won’t be deleted
+
+console.log(object1); // { name: 'Pranav', age: 45, address: 'UP' }
+
+
+
+
+
+
+
+// 7. Object.seal(obj) : Seals an object so that you can modify existing properties but cannot add or delete properties.
+
+let book = {
+    title : "Atomic habit",
+    pages : 400
+};
+console.log(book);
+
+Object.seal(book);
+
+book.pages = 100;         // ✅ Allowed
+book.author = "John";     // ❌ Not added
+delete book.title;        // ❌ Not deleted
+
+console.log(book); // { title: 'Atomic habit', pages: 100 }
+
+
+
+
+
+
+// 8. Object.is(value1, value2) : Compares two values for strict equality (like ===) but handles edge cases more accurately.
+
+/*
+    📌 Key Differences from === :
+
+        Object.is(NaN, NaN) → true
+        But NaN === NaN → false
+
+        Object.is(+0, -0) → false
+        But +0 === -0 → true
+*/
+
+console.log("✅ Primitive comparisons:");
+console.log(Object.is(100, 100));     // true (same number)
+console.log(Object.is("a", "a"));     // true (same string)
+console.log(Object.is(true, true));   // true (same boolean)
+console.log(Object.is(false, true));  // false (different boolean)
+console.log(Object.is(null, null));   // true
+
+console.log("\n❗ Special cases:");
+console.log(Object.is(NaN, NaN));     // true (unlike NaN === NaN which is false)
+console.log(NaN === NaN);             // false (just for comparison)
+
+console.log(Object.is(+0, -0));       // false (=== treats them equal, but Object.is does not)
+console.log(+0 === -0);               // true
+
+console.log("\n🔁 Object comparisons:");
+console.log(Object.is([], []));       // false (different memory reference)
+console.log(Object.is({}, {}));       // false (different memory reference)
+
+obj = { a: 1 };
+console.log(Object.is(obj, obj));     // true (same reference)
+
+console.log("\n📌 Explanation:");
+console.log(`
+- Object.is works like === but is more precise.
+- It treats NaN === NaN as true.
+- It treats +0 and -0 as different.
+- It compares by reference for objects and arrays.
+`);
+
+
+
+
 
 //---------> Doubt
 
