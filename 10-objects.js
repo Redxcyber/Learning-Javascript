@@ -516,13 +516,13 @@ console.log(Object.is({}, {}));       // false (different memory reference)
 obj = { a: 1 };
 console.log(Object.is(obj, obj));     // true (same reference)
 
-console.log("\n📌 Explanation:");
-console.log(`
-- Object.is works like === but is more precise.
-- It treats NaN === NaN as true.
-- It treats +0 and -0 as different.
-- It compares by reference for objects and arrays.
-`);
+/*
+    📌 Explanation : 
+        - Object.is() works like === but is more precise.
+        - It treats NaN === NaN as true.
+        - It treats +0 and -0 as different.
+        - It compares by reference for objects and arrays.
+*/
 
 
 
@@ -540,3 +540,24 @@ console.log(user[key]);
 
 user[key] *= 2;
 console.log(user[key]);
+
+
+
+
+/*
+    📌 Few Other Methods Of Object :
+
+
+    |           Method             |              Purpose                           |
+    |------------------------------|------------------------------------------------|
+    | Object.getOwnPropertyNames   | Gets all property names (incl. non-enumerable) |
+    | Object.getPrototypeOf        | Gets the prototype of an object                |
+    | Object.setPrototypeOf        | Sets the prototype of an object                |
+    | Object.defineProperty        | Defines/modifies a property with descriptors   |
+    | Object.defineProperties      | Defines multiple properties                    |
+    | Object.preventExtensions     | Prevents adding new properties                 |
+    | Object.isExtensible          | Checks if new properties can be added          |
+    | Object.fromEntries           | Creates object from array of key-value pairs   |
+
+*/
+
