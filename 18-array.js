@@ -4,6 +4,7 @@ let arr = [];
 let arr2 = new Array();
 console.log(arr);
 console.log(arr2);
+console.log("\n");
 
 
 
@@ -16,6 +17,7 @@ console.log(arr2);
 
 let fruits = ["Apple", "Orange", "Banana", "Guava"];
 console.log(fruits);
+console.log("\n");
 
 
 
@@ -29,6 +31,7 @@ console.log(fruits[1]);
 console.log(fruits[2]);
 console.log(fruits[3]);
 console.log(fruits[4]); //index out of bound -> undefined
+console.log("\n");
 
 
 
@@ -44,6 +47,7 @@ console.log(fruits);
 
 fruits[4] = "Blackberry";
 console.log(fruits);
+console.log("\n");
 
 
 
@@ -54,6 +58,7 @@ console.log(fruits);
 fruits = ["Apple", "Orange", "Banana", "Guava"];
 
 console.log(fruits.length);
+console.log("\n");
 
 
 
@@ -67,6 +72,7 @@ arr = [ "Apple", 2, { name : "Pranav", age : 23 }, true, function(){ console.log
 console.log(arr);
 console.log(arr[2]);
 arr[4]();
+console.log("\n");
 
 
 
@@ -84,6 +90,7 @@ console.log( fruits[fruits.length - 1] );
 console.log( fruits.at(-1) );
 
 console.log( fruits[-1] ); // return undefined , not valid in js
+console.log("\n");
 
 
 
@@ -109,6 +116,7 @@ console.log( fruits );
 
 fruits.unshift("Mango"); // can add multiple elements too
 console.log( fruits );
+console.log("\n");
 
 
 
@@ -126,7 +134,51 @@ console.log( bikes == scooter );
 
 scooter.push("TVS");
 console.log(bikes);
+console.log("\n");
 
+
+
+
+
+
+
+
+//------------> Create duplicate of an array : (i.e two different object)
+
+let array1 = ["item1", "item2", "item3"];
+console.log(array1);
+
+// Method-01
+let array2 = array1.slice(0);
+console.log(array2);
+
+array2.push("item4");
+console.log(array2);
+console.log(array1); //array1 remain unaffected
+console.log(array1 === array2);
+console.log();
+
+
+// Method-02
+let array3 = [].concat(array1);
+console.log(array3);
+
+array3.push("item4");
+console.log(array3);
+console.log(array1); //array1 remain unaffected
+console.log(array1 === array3);
+console.log();
+
+
+// Method-03 : spread operator
+let array4 = [...array1];
+console.log(array4);
+
+array4.push("item4");
+console.log(array4);
+console.log(array1); //array1 remain unaffected
+console.log(array1 === array4);
+console.log("\n");
 
 
 
@@ -156,9 +208,38 @@ for (let item of fruits) {
 fruits = ["Apple", "Orange", "Banana", "Guava"];
 
 // Generally, we shouldn’t use for..in for arrays.
-for (let item in fruits ) {
-    console.log( fruits[item] ); //item = 0, 1, 2, 3, 4 ....
+for (let index in fruits ) {
+    console.log( fruits[index] ); //index = 0, 1, 2, 3, 4 ....
 }
+console.log("\n");
+
+
+
+
+
+
+
+
+
+
+//---------> constant array
+
+const furniture = ["chair", "table"];
+console.log(furniture);
+
+furniture.push("bed", "door");
+console.log(furniture);
+
+/*
+    furniture array stored inn Heap memory : let's say address that furniture holding it 0x11
+    by pushing , poping, shifting and unshifting etc we are not changing address/reference of furniture. it remains same i.e 0x11
+    therefore, it is totally valid to do there operations
+    what is not allowed : changing reference (reassigning furniture)
+*/
+
+console.log("\n");
+
+
 
 
 
@@ -209,6 +290,7 @@ console.log(arr);
 
 arr.length = 0;
 console.log(arr);
+console.log("\n");
 
 
 
@@ -237,6 +319,7 @@ let arrr = new Array(3);
 
 console.log(arrr);
 console.log(arrr.length);
+console.log("\n");
 
 
 
@@ -256,6 +339,7 @@ let matrix = [
 
 console.log(matrix);
 console.log( matrix[0][2] );
+console.log("\n");
 
 
 
@@ -274,6 +358,7 @@ console.log( String(arr) === "1,2,3" ); // true
 console.log( [] + 1 ); // "1"
 console.log( [1] + 1 ); // "11"
 console.log( [1,2] + 1 ); // "1,21"
+console.log("\n");
 
 
 
@@ -289,6 +374,7 @@ console.log( [0] == [0] ); //false
 
 console.log( 0 == [] ); //true
 console.log( '0' == [] ); //false
+console.log("\n");
 
 /*
     So, how to compare arrays?
@@ -296,4 +382,47 @@ console.log( '0' == [] ); //false
     That’s simple: don’t use the == operator. 
     Instead, compare them item-by-item in a loop or using iteration methods explained in the next chapter.
 */
+
+
+
+
+
+
+
+
+
+
+
+
+//------------> Array destructuring : read from obsidian for more info
+
+const people = ["pranav", "vageesh", "prashant", "vikas"];
+console.log(people);
+
+//our task is to store its two element in two variables
+let myVar1 = people[0];
+let myVar2 = people[1];
+console.log(myVar1);
+console.log(myVar2);
+console.log();
+
+
+//using destructuring (shorthand in js)
+let [myVar01, myVar02] = people;
+console.log(myVar01);
+console.log(myVar02);
+console.log();
+
+
+//store two elements in variable and two in an array (rest operator)
+let [var1, var2, ...myArr] = people;
+console.log(var1);
+console.log(var2);
+console.log(myArr);
+
+
+
+
+
+
 
