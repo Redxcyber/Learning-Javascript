@@ -116,6 +116,91 @@ console.log("\n");
 
 
 
+//------->obj can't have two same property, later one will prevail
+let obj = {
+    key1 : "value1",
+    key2 : "value2",
+    key1 : "value3"
+};
+console.log(obj); // { key1: 'value3', key2: 'value2' }
+console.log("\n");
+
+
+
+
+
+
+
+
+
+
+//------->spread operator in obj
+let obj1 = {
+    key1 : "value1",
+    key2 : "value2",
+};
+
+let obj2 = {
+    key3 : "value3",
+    key4 : "value4",
+};
+
+let newCloneObj = {...obj1, ...obj2, key5 : "value5"};
+console.log(newCloneObj);
+console.log();
+
+let newSpreadObj = { ..."abc" };
+console.log(newSpreadObj);
+
+newSpreadObj = { ...["item1", "item2", "item3"] };
+console.log(newSpreadObj);
+console.log("\n");
+
+
+
+
+
+
+
+
+
+
+
+//-----------> Object destructuring : read from obsidian
+
+let band = {
+    bandName : "led zepplin",
+    famousSong : "stairway to heaven",
+    year : 1968,
+    location : "USA",
+};
+
+//if we want to keep different variable name then
+let { bandName:var1 , famousSong:var2 } = band;
+
+// console.log( bandName );    // Error : variables are var1 and var2 
+// console.log( famousSong );  // Error : variables are var1 and var2 
+
+console.log( var1 );
+console.log( var2 );
+console.log();
+
+//store rest properties
+let { bandName, famousSong, ...restProp} = band;
+console.log( bandName ); 
+console.log( famousSong );
+console.log( restProp );
+console.log("\n");
+
+
+
+
+
+
+
+
+
+
 //-------> Property value shorthand
 function makeUser(name, age) {
     return {
@@ -172,7 +257,7 @@ console.log("\n");
     For instance, a number 0 becomes a string "0" when used as a property key:
 */
 
-let obj = {
+obj = {
     for : 1,
     if : 2,
     return : 3,
@@ -418,8 +503,8 @@ console.log(Object.entries(user));
 
 
 // 4. Object.assign(target, sources...) : Copies properties from sources to target.
-let obj1 = { name : "Pranav" };
-let obj2 = { age : 50 };
+obj1 = { name : "Pranav" };
+obj2 = { age : 50 };
 let merged = Object.assign( {}, obj1, obj2 );
 console.log(merged);
 console.log("\n");
