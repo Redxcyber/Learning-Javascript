@@ -17,6 +17,7 @@ function User( name ) {
 
 let user = new User("Jack");
 console.log( user );
+console.log("\n");
 
 
 /*
@@ -44,6 +45,7 @@ let student = new function() {
 };
 
 console.log( student );
+console.log("\n");
 
 /*
     This constructor can’t be called again, 
@@ -64,7 +66,7 @@ console.log( student );
 
 /*
     Usually, constructors do not have a return statement. 
-    Their task is to write all necessary stuff into this, and it automatically becomes the result.
+    Their task is to write all necessary stuff into "this", and it automatically becomes the result.
     
     But if there is a return statement, then the rule is simple:    
         1. If return is called with an object, then the object is returned instead of this.
@@ -86,6 +88,7 @@ function SmallUser() {
     return "Bob";
 }
 console.log(new SmallUser().name); // John
+console.log("\n");
 
 
 /*
@@ -126,6 +129,7 @@ function Admin(name) {
 let vageesh = new Admin( "Vageesh" );
 console.log( vageesh );
 vageesh.sayHi();
+console.log("\n");
 
 /*
     john = {
