@@ -442,7 +442,63 @@ let [var1, var2, ...myArr] = people;
 console.log(var1);
 console.log(var2);
 console.log(myArr);
+console.log("\n");
 
+
+
+
+
+
+
+
+
+
+//-----------> objects inside array : useful in real world application
+
+let users = [
+    { userId : 1, name : "pranav", gender : "male" },
+    { userId : 2, name : "rupali", gender : "female" },
+    { userId : 3, name : "vageesh", gender : "male" },
+];
+console.log(users);
+
+// Task : print name of all users
+for (let user of users) {
+    console.log(user.name);
+}
+console.log("\n");
+
+
+
+
+
+
+
+
+//----------------> Nested destructuring
+users = [
+    { userId : 1, name : "pranav", gender : "male" },
+    { userId : 2, name : "rupali", gender : "female" },
+    { userId : 3, name : "vageesh", gender : "male" },
+];
+console.log(users);
+
+// Task : get saparate obj for each user
+let [user1, user2, user3] = users;
+console.log(user1);
+console.log(user2);
+console.log(user3);
+
+
+// Task : we want name of user1 and gender of user3
+let [{name}, , {gender}] = users;
+console.log(name);
+console.log(gender);
+
+//if we want different variable name
+let [{name: user1Name}, , {gender : user3Gender}] = users;
+console.log(user1Name);
+console.log(user3Gender);
 
 
 
