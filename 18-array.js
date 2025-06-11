@@ -143,6 +143,29 @@ console.log("\n");
 
 
 
+//------------> Spread operator
+
+let num1 = [1,2,3];
+let num2 = [4, 5, 6];
+
+let wholeArray = [...num1, ...num2, 7, 8];
+console.log(wholeArray);
+
+let strSpreadArr = [..."12345"];
+console.log(strSpreadArr); // [ '1', '2', '3', '4', '5' ]
+
+strSpreadArr = [..."pranav"];
+console.log(strSpreadArr); // [ 'p', 'r', 'a', 'n', 'a', 'v' ]
+console.log("\n");
+
+
+
+
+
+
+
+
+
 //------------> Create duplicate of an array : (i.e two different object)
 
 let array1 = ["item1", "item2", "item3"];
