@@ -501,6 +501,10 @@ console.log(user1Name);
 console.log(user3Gender);
 
 
+// Task : we want name of user1 and gender of user2
+[{name}, {gender}] = users;
+console.log(name);
+console.log(gender);
 
 
 
