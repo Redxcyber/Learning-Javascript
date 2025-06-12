@@ -75,4 +75,5 @@ console.log(f());
 
 
 // ➡️ Arrow functions
-let g = (param1)
+let g = (param1) => console.log(`printing ${param1} using arrow fn`);
+g(1234);
