@@ -30,6 +30,8 @@ console.log("\n");
     - start	➜ Index at which to start changing the array
     - deleteCount ➜ Number of elements to remove from start position
     - item1...itemN ➜ Optional elements to add to the array at start position
+
+    it modifies the original array
 */
 
 
@@ -55,11 +57,13 @@ console.log(removed);
 
 
 //add elements
+fruits = [ "Apple", "Mango", "Guava", "Banana" ];
 fruits.splice(1, 0, "Grapes", "Pear");
 console.log(fruits);
 
 
 //replace elements (delete + add element at same pos)
+fruits = [ "Apple", "Mango", "Guava", "Banana" ];
 fruits.splice(1, 1, "Pineapple");
 console.log(fruits);
 
@@ -67,6 +71,7 @@ console.log(fruits);
 
 
 // Delete everything from a point
+fruits = [ "Apple", "Mango", "Guava", "Banana" ];
 console.log(fruits);
 fruits.splice(1);  // removes everything from index 1 onward
 console.log(fruits);
@@ -150,7 +155,7 @@ console.log(arr.slice(6)); //[]
 
 
 
-// 🔹 6. Slice with end <= start
+// 🔹 6. Slice with start >= end
 arr = [ 'a', 'b', 'c', 'd', 'e', 'f' ];
 console.log(arr);
 
@@ -279,7 +284,7 @@ console.log("\n");
 
 
 
-//-------------->  arr.forEach method 
+//-------------->  arr.forEach(fn) method : for iteration
 
 /*
     array.forEach(function(element, index, array) {
@@ -340,6 +345,7 @@ fruits.forEach((item,index,array) => {
 numbers = [10,20,30];
 let sum = 0;
 
+// numbers.forEach((item) => { sum += item } );
 numbers.forEach(item => sum += item );
 
 console.log(`Sum : ${sum}`);
@@ -351,14 +357,16 @@ console.log(`Sum : ${sum}`);
 arr = [1, 2, 3];
 arr.forEach(x => x = x * 2);  // ❌ This does NOT change original array
 console.log(arr); // [1, 2, 3]
-console.log("\n");
 
+arr.forEach((x,i,arr) => arr[i] = x * 2);  // This change original array
+console.log(arr); // [2, 4, 6]
+console.log("\n");
 
 
 /*
 
     ⚠️ Notes:
-        - forEach() does not return anything.
+        - forEach() does not return anything. (return undefined)
         - You can’t break out of a forEach() loop using break or return.
         - Use a regular for or for...of loop if you need to break.
 
@@ -366,7 +374,9 @@ console.log("\n");
         - When you just want to perform an action on every item in an array.
         - When you don’t need a return value.
         - Perfect for logging, updating DOM, side effects.
-
+    
+    ✅ Mutates(change) Original?
+        - yes, If you change array[index]
 */
 
 
@@ -391,6 +401,7 @@ console.log(fruits.includes("grapes"));
 arr = [NaN];
 console.log( arr.indexOf(NaN) ); // -1 (not found - wrong) -> but should be 0
 console.log( arr.includes(NaN) );// true (correct)
+console.log();
 
 
 
@@ -402,6 +413,7 @@ console.log(numbers.indexOf(20));
 console.log(numbers.indexOf(30));
 console.log(numbers.indexOf(20,2));
 console.log(numbers.indexOf(30,3));
+console.log();
 
 
 
@@ -412,6 +424,7 @@ numbers = [10,20,30,20,30];
 console.log(numbers.lastIndexOf(10));
 console.log(numbers.lastIndexOf(20));
 console.log(numbers.lastIndexOf(30));
+console.log();
 
 
 
@@ -445,6 +458,7 @@ let users = [
 let user = users.find(item => item.id == 1);
 
 console.log(user.name); 
+console.log();
 
 
 
@@ -454,6 +468,7 @@ console.log(user.name);
 ages = [10, 12, 30, 18];
 let i = ages.findIndex(age => age >= 18);
 console.log(i);
+console.log();
 
 
 
@@ -568,18 +583,18 @@ console.log("\n");
 
 
 /*
-The .map() method creates a new array by applying a function to each element of the original array.
-- It does not change the original array
-- It returns a new array of the same length
+    The .map() method creates a new array by applying a function to each element of the original array.
+        - It does not change the original array
+        - It returns a new array of the same length
 
-let result = arr.map(function(item, index, array) {
-    // returns the new value instead of item
+    let result = arr.map(function(item, index, array) {
+        // returns the new value instead of item
     });
-    
+
     let result = array.map((item, index, array) => {
         // return new value instead of item
     });
-        
+            
 */
 
 
@@ -646,7 +661,7 @@ console.log("\n");
         - To sort numbers correctly, we pass a compare function:
         - (a, b) => a - b for ascending, (a, b) => b - a for descending.
 
-        */
+*/
        
 
        
@@ -711,23 +726,23 @@ JavaScript’s .sort(compareFn) doesn’t care how you compute the number — it
             → Positive when a > b → So a goes after b
 
         b - a flips it:
-        → Negative when b < a → Good for descending
-        → Positive when b > a
+            → Negative when b < a → Good for descending
+            → Positive when b > a → So a goes after b
         
         👉 So we don’t care about subtraction itself — we care about what sign it gives:
-        Want ascending?  Use a - b
-        Want descending? Use b - a
+            Want ascending?  Use a - b
+            Want descending? Use b - a
         
-        */
+*/
        
        
        
        
        
        
-       // 📌 4. Sort Strings Case-Insensitive
-       
-       names = [ "Pranav", "Zeeshan", "alok", "Vageesh", "mirza" ]; //first letter is small by purpose
+// 📌 4. Sort Strings Case-Insensitive
+
+names = [ "Pranav", "Zeeshan", "alok", "Vageesh", "mirza" ]; //first letter is small by purpose
 console.log(names);
 
 names.sort()
@@ -825,11 +840,11 @@ console.log("\n");
 //---------------------> 3. arr.reverse() Method in JavaScript
 
 /*
-✅ What it does:
-- Reverses the order of elements in an array.
-- return reverse of arr, can log on screen or store in another var
-- Modifies the original array in place (⚠️ destructive).
-- Returns the same array, now reversed.
+    ✅ What it does:
+        - Reverses the order of elements in an array.
+        - return reverse of arr, can log on screen or store in another var
+        - Modifies the original array in place (⚠️ destructive).
+        - Returns the same array, now reversed.
 */
 
 
@@ -881,7 +896,7 @@ console.log(messages);
 messages.reverse();
 console.log(messages);
 // [
-    //   { id: 3, text: "Hey" },
+//   { id: 3, text: "Hey" },
 //   { id: 2, text: "Hello" },
 //   { id: 1, text: "Hi" }
 // ]
@@ -927,12 +942,12 @@ console.log("\n");
 
 
 /*
-🔹 split() : String → Array , Converts a string into an array, splitting it at each separator (delimiter).
-- separator: character(s) to split by (like " ", ",", "", etc.)
-- limit (optional): max number of splits
+    🔹 split() : String → Array , Converts a string into an array, splitting it at each separator (delimiter).
+        - separator: character(s) to split by (like " ", ",", "", etc.)
+        - limit (optional): max number of splits
 
-🔹 join() : Array → String , Joins array elements into a single string with a separator. 
-- separator: optional, defaults to "," if not given.
+    🔹 join() : Array → String , Joins array elements into a single string with a separator. 
+        - separator: optional, defaults to "," if not given.
 */
 
 
@@ -1237,6 +1252,7 @@ console.log(fruits);
 
 result = fruits.reduce((acc, fruit) => {
     acc[fruit] = ( acc[fruit] || 0 ) + 1;
+    // acc[fruit] = acc[fruit] ? acc[fruit] + 1 : 1;
     return acc;
 }, {});
 
@@ -1382,6 +1398,7 @@ console.log(values);
 
 */
 
+// count = values.reduce((acc, value) => (Boolean(value) ? acc + 1 : acc), 0);
 count = values.reduce((acc, value) => acc + (Boolean(value) ? 1 : 0), 0)
 console.log(count);
 
@@ -1477,6 +1494,7 @@ console.log(result);
 // Method-05
 result = arr.reduce(({ Total = 0, Count = 0 }, value) => ({ Total: Total + value, Count: Count + 1 }), {});
 console.log(result);
+console.log("\n");
 
 
 /*
@@ -1493,3 +1511,46 @@ console.log(result);
     🎯 Rule of Thumb: Always use ( ... ) when returning an object from an arrow function.
 
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------> Array.isArray(value)
+
+/*
+    Array.isArray(value) is a static method used to check whether a value is an array or not.
+
+    It returns:
+        true → if the value is an array
+        false → if the value is not an array
+    
+    "typeof" operator does not help to distinguish a plain object from an array:
+*/
+
+console.log(typeof []); // object
+console.log(typeof {}); // object
+
+
+console.log( Array.isArray([]) ); // true
+console.log( Array.isArray({}) ); // false
+
+console.log( Array.isArray( [[1,2], [3,4]] ) ); //true
+console.log("\n");
+
+
+
+
+
+
+
+//---------> most methods support "thisArg" : read yourself 
+
