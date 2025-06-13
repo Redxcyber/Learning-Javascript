@@ -467,7 +467,7 @@ map = new Map([
 ]);
 console.log(map);
 
-arr = Array.from(map.entries());
+let arr = Array.from(map.entries());
 console.log(arr); // [ [ 'apple', 5 ], [ 'banana', 2 ], [ 'mango', 9 ] ]
 
 
@@ -551,3 +551,244 @@ for (let [user, role] of [
 ] ) {
     console.log(`${user.name} is ${role}`);
 }
+
+
+// Example 1 : count word frequency
+let sentence = "apple mango orange apple grapes mango peer apple";
+let words = sentence.split(" ");
+
+let freqObject = {};
+for (let word of words) {
+    freqObject[word] = (freqObject[word] || 0) + 1; 
+}
+console.log(freqObject);
+
+
+let freqMap = new Map();
+for (let word of words) {
+    
+    // method-01 (not optimised)
+    //Boolean(freqMap.get(word)) ? freqMap.set(word, freqMap.get(word) + 1) : freqMap.set(word, 1);
+    
+    // method-01 (optimised)
+    //freqMap.has(word) ? freqMap.set(word, freqMap.get(word) + 1) : freqMap.set(word, 1);
+
+    // method-03 (best)
+    freqMap.set(word, (freqMap.get(word) || 0) + 1);
+}
+console.log(freqMap);
+
+
+
+
+
+
+
+
+
+//--------------> Cloning a Map
+
+let original = new Map([
+    ["name", "pranav"],
+    ["age", 23]
+]);
+console.log(original);
+
+let clone = new Map(original);
+console.log(clone);
+
+clone.set("isAdmin", true);
+console.log(clone);
+console.log(original); // unaffected from clone
+console.log("\n");
+
+
+
+
+
+
+
+
+
+//-----------> Using functions as keys
+
+function sayHello() {
+  console.log("Hello!");
+}
+
+function sayBye() {
+  console.log("Bye!");
+}
+
+let funcMap = new Map();
+
+// Use functions as keys
+funcMap.set(sayHello, "Greet Function");
+funcMap.set(sayBye, "Farewell Function");
+
+// Retrieve values
+console.log(funcMap.get(sayHello));  // Greet Function
+console.log(funcMap.get(sayBye));    // Farewell Function
+
+// Looping through map
+for (let [func, description] of funcMap) {
+  console.log(description + ":");
+  func();  // calling the function
+}
+console.log();
+
+
+
+// ✅ Valid: Using functions as keys or values directly
+map = new Map();
+
+// using a function as a key
+let greet = function () {
+  console.log("Hi there!");
+};
+
+map.set(greet, "Greeting Function");
+
+// calling the function from the key
+let keyFunc = [...map.keys()][0];
+keyFunc(); // prints "Hi there!"
+
+console.log(map.get(greet)); // "Greeting Function"
+console.log();
+
+
+
+
+// ✅ You can also create the function inline:
+map = new Map([
+  [ function() { return "I'm a key function"; }, "value 1" ],
+  [ () => "Arrow function key", "value 2" ]
+]);
+
+for (let [fn, value] of map) {
+  console.log(fn());     // calling the function key
+  console.log(value);    // its associated value
+}
+console.log("\n");
+
+
+
+
+
+
+
+//--------------> Map can't have duplicate key : if any then it overwrite older key
+
+map = new Map();
+
+map.set("a", "value1");
+map.set("a", "value2");
+map.set("a", "value3");
+
+console.log(map); // Map(1) { 'a' => 'value3' }
+
+
+
+// ✅ Remove duplicates from array
+
+arr = ["a", "b", "a", "c", "b"];
+
+// 1. Using filter() + indexOf():
+let result = arr.filter((item, index, array) => array.indexOf(item) === index);
+console.log(result);
+
+
+// 2. Using reduce()
+result = arr.reduce((acc, value) => {
+    if( !acc.includes(value) ) {
+        acc.push( value );
+    }
+    return acc;
+}, []);
+console.log(result);
+
+
+// 3. Using Map
+map = new Map();
+
+for(let item of arr){
+    map.set(item, true);
+}
+
+result = [...map.keys()];
+console.log(result);
+
+
+//using arr.forEach() + Map
+map = new Map();
+
+arr.forEach((item) => map.set(item, true));
+result = [...map.keys()];
+console.log(result);
+
+
+//using arr.map() + Map
+result = [...new Map(arr.map((item) => [item, true])).keys()];
+console.log(result);
+
+/*
+    ✅ EXPLANATION : STEP BY STEP
+
+    let arr = ["a", "b", "a", "c", "b"];
+
+    1️⃣ Convert each element to a [key, value] pair
+
+        let pairArray = arr.map(x => [x, true]);
+        console.log(pairArray);
+
+    Output: [ [ 'a', true ], [ 'b', true ], [ 'a', true ], [ 'c', true ], [ 'b', true ] ]
+
+    2️⃣ Create a Map from these pairs
+
+        let map = new Map(pairArray);
+        console.log(map);
+
+    Output: Map(3) { 'a' => true, 'b' => true, 'c' => true }
+
+    3️⃣ Extract only the keys (which are unique)
+    
+        let keysIterator = map.keys(); // gives an iterator
+        let unique = [...keysIterator]; // spread to make array
+        console.log(unique); 
+
+    Output : [ 'a', 'b', 'c' ]
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
