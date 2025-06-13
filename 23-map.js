@@ -32,7 +32,7 @@ console.log(map);
 // Map keeps the type as you passed, so these two are different:
 // access key in map
 console.log( map.get(1) );
-console.log( map.get("1") );
+console.log( map.get("1") ); // but in obj these both are treated same as string "1"
 
 //no of element in map
 console.log( map.size );
@@ -225,6 +225,19 @@ console.log("\n");
     map.keys() – returns an iterable for keys,
     map.values() – returns an iterable for values,
     map.entries() – returns an iterable for entries [key, value], it’s used by default in for..of.
+
+    An iterable or iterator is a special object in JavaScript that you can loop over using for...of.
+
+        let myMap = new Map([
+          ['name', 'John'],
+          ['age', 25],
+          ['country', 'India']
+        ]);
+
+        let keys = myMap.keys();
+
+        console.log(keys); // [Map Iterator] { 'name', 'age', 'country' }
+
 */
 
 
@@ -234,6 +247,9 @@ let recipeMap = new Map([
     [ "onions", 30 ]
 ]);
 console.log(recipeMap);
+console.log(recipeMap.keys());
+console.log(recipeMap.values());
+console.log(recipeMap.entries());
 
 // iterate over keys (vegetables)
 for (let vegetable of recipeMap.keys()) {
@@ -262,10 +278,14 @@ for (let entry of recipeMap.entries()) {
 // Besides that, Map has a built-in forEach method, similar to Array:
 
 /*
-    ✅ Syntax of Map.forEach()
+    ✅ Syntax of Map.forEach(fn)
+
+        map.forEach(function(value, key, map) {
+            // your code here
+        });
 
         map.forEach((value, key, map) => {
-        // your code here
+            // your code here
         });
 
     🔹 Parameters:
@@ -302,6 +322,12 @@ console.log("\n");
 
 //-----------------> Object.entries(obj) : map from obj (convert plain object to map)
 
+/*
+    If we have a plain object, and we’d like to create a Map from it, 
+    then we can use built-in method Object.entries(obj) that returns an 
+    array of key/value pairs for an object exactly in that format.
+*/
+
 let obj = {
   cucumber: 500,
   tomatoes: 350,
@@ -309,7 +335,7 @@ let obj = {
 };
 console.log(obj);
 
-console.log(Object.entries(obj));
+console.log(Object.entries(obj)); // [ [ 'cucumber', 500 ], [ 'tomatoes', 350 ], [ 'onions', 50 ] ]
 
 map = new Map(Object.entries(obj));
 
@@ -327,6 +353,11 @@ console.log("\n");
 
 //--------------> Object.fromEntries(iterable) : Object from Map (convert map to plain obj)
 
+/*
+    There’s Object.fromEntries() method that does the reverse: 
+    given an array of [key, value] pairs, 
+    it creates an object from them:
+*/
 
 
 
@@ -488,9 +519,9 @@ function printMap(map) {
 }
 
 map = new Map([
-    ["apple", 5],
-    ["banana", 2],
-    ["mango", 9],
+    ["apple", 25],
+    ["banana", 12],
+    ["mango", 90],
 ]);
 
 printMap(map);
@@ -509,5 +540,14 @@ let roles = new Map([
 ]);
 
 for (let [user, role] of roles.entries()) {
+    console.log(`${user.name} is ${role}`);
+}
+
+
+// for...of only works on iterables (like arrays, maps, strings, etc.).
+for (let [user, role] of [
+    [ { name: 'Pranav' }, 'admin' ], 
+    [ { name: 'Atul' }, 'editor' ]
+] ) {
     console.log(`${user.name} is ${role}`);
 }
