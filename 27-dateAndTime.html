@@ -791,6 +791,7 @@
         date = new Date("2025-08-15");
         console.log(date);
         // This also internally calls Date.parse().
+        console.log("\n");
         
 
 
@@ -802,6 +803,38 @@
 
 
 
+        //---------------------> Date Arithmetic
+
+
+
+        // ✅ Add days to date
+
+        d = new Date();
+        d.setDate(d.getDate() + 5);
+        console.log(d); // 5 days later
+
+
+
+
+        // ✅ Subtract days
+
+        d = new Date();
+        d.setDate(d.getDate() - 10);
+        console.log(d); // 10 days ago
+
+
+
+
+        // 🧮 Date Difference (in days)
+
+        start = new Date("2025-06-01");
+        end = new Date("2025-06-06");
+
+        let diff = end - start; // difference in ms between two dates
+        let days = diff / (1000 * 60 * 60 * 24); // convert ms to days
+        console.log(days); // 5
+        console.log("\n");
+        
 
 
 
@@ -811,7 +844,37 @@
 
 
 
+        //---------> 🕔 Formatting Date and Time
 
+        d = new Date();
+
+        console.log(d.toString());       // Full string
+        console.log(d.toDateString());   // Date only
+        console.log(d.toTimeString());   // Time only
+        console.log(d.toISOString());    // ISO format
+        console.log(d.toLocaleString()); // Localized
+        console.log("\n");
+        
+
+
+        /*
+
+            📦 Useful Real-Life Use Cases
+
+            | Task                                 | Use                                 |
+            | ------------------------------------ | ----------------------------------- |
+            | Show current date/time in UI         |   new Date() + formatting           |
+            | Countdown timers / Stopwatches       |   Date.now() + math                 |
+            | Date comparison                      |   d1 > d2 using timestamps          |
+            | Filter events within date range      |   if (date >= start && date <= end) |
+            | Save dates to database in ISO format |   date.toISOString()                |
+
+        */
+
+
+
+
+        
 
     </script>
 </body>
